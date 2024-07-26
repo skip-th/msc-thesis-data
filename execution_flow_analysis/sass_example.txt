@@ -1,0 +1,202 @@
+------------------ --------------------------------------------------
+Kernel Name        __cuda_sm3x_div_rn_noftz_f32
+------------------ --------------------------------------------------
+Address            Source
+0x2aab89a66000          IADD3 R1, R1, -0x10, RZ
+0x2aab89a66010          STL [R1+0x8], R21
+0x2aab89a66020          STL [R1+0x4], R20
+0x2aab89a66030          STL [R1], R2
+0x2aab89a66040          BMOV.32.CLEAR R2, B6
+0x2aab89a66050          BSSY B6, 0x2aab89a66160
+0x2aab89a66060          FCHK P0, R4, R5
+0x2aab89a66070     @P0  BRA 0x2aab89a66120
+0x2aab89a66080          MUFU.RCP R0, R5
+0x2aab89a66090          FADD.FTZ R3, -R5, -RZ
+0x2aab89a660a0          FFMA R6, R0, R3, 1
+0x2aab89a660b0          FFMA R6, R0, R6, R0
+0x2aab89a660c0          FFMA R9, R4, R6, RZ
+0x2aab89a660d0          FFMA R0, R3, R9, R4
+0x2aab89a660e0          FFMA R9, R6, R0, R9
+0x2aab89a660f0          FFMA R4, R3, R9, R4
+0x2aab89a66100          FFMA R4, R6, R4, R9
+0x2aab89a66110          BRA 0x2aab89a66150
+0x2aab89a66120          MOV R20, 0x0
+0x2aab89a66130          MOV R21, 0x0
+0x2aab89a66140          CALL.ABS.NOINC 0x0
+0x2aab89a66150          BSYNC B6
+0x2aab89a66160          LDL R20, [R1+0x4]
+0x2aab89a66170          BMOV.32 B6, R2
+0x2aab89a66180          LDL R21, [R1+0x8]
+0x2aab89a66190          LDL R2, [R1]
+0x2aab89a661a0          IADD3 R1, R1, 0x10, RZ
+0x2aab89a661b0          RET.ABS.NODEC R20 0x0
+0x2aab89a661c0          BRA 0x2aab89a661c0
+0x2aab89a661d0          NOP
+0x2aab89a661e0          NOP
+0x2aab89a661f0          NOP
+------------------ --------------------------------------------------
+Kernel Name        vertexPullPageRank(CSR<unsigned int, uns
+                   igned int> *, unsigned int *, float *, f
+                   loat *)
+------------------ --------------------------------------------------
+Address            Source
+0x2aab89a7a000          IMAD.MOV.U32 R1, RZ, RZ, c[0x0][0x28]
+0x2aab89a7a010          ULDC.64 UR4, c[0x0][0x160]
+0x2aab89a7a020          LDG.E.64.SYS R30, [UR4]
+0x2aab89a7a030          S2R R22, SR_CTAID.X
+0x2aab89a7a040          S2R R0, SR_TID.X
+0x2aab89a7a050          IMAD R22, R22, c[0x0][0x0], R0
+0x2aab89a7a060          ISETP.GE.U32.AND P0, PT, R22, R30, PT
+0x2aab89a7a070          ISETP.GE.U32.AND.EX P0, PT, RZ, R31, PT, P0
+0x2aab89a7a080     @P0  EXIT
+0x2aab89a7a090          IMAD.MOV.U32 R19, RZ, RZ, RZ
+0x2aab89a7a0a0          MOV R26, RZ
+0x2aab89a7a0b0          ULDC UR4, c[0x0][0x160]
+0x2aab89a7a0c0          ULDC UR5, c[0x0][0x164]
+0x2aab89a7a0d0          UIADD3 UR4, UP0, UR4, 0x10, URZ
+0x2aab89a7a0e0          UIADD3.X UR5, URZ, UR5, URZ, UP0, !UPT
+0x2aab89a7a0f0          IMAD.U32 R28, RZ, RZ, UR4
+0x2aab89a7a100          IMAD.U32 R29, RZ, RZ, UR5
+0x2aab89a7a110          LDG.E.64.SYS R4, [R28]
+0x2aab89a7a120          SHF.L.U32 R17, R22, 0x2, RZ
+0x2aab89a7a130          SHF.L.U64.HI R18, R22, 0x2, R19
+0x2aab89a7a140          IADD3 R2, P0, R4, R17, RZ
+0x2aab89a7a150          IMAD.X R3, R5, 0x1, R18, P0
+0x2aab89a7a160          LDG.E.SYS R16, [R2+0x4]
+0x2aab89a7a170          LDG.E.SYS R25, [R2]
+0x2aab89a7a180          BSSY B9, 0x2aab89a7a910
+0x2aab89a7a190          ISETP.GT.U32.AND P0, PT, R16, R25, PT
+0x2aab89a7a1a0     @!P0 BRA 0x2aab89a7a900
+0x2aab89a7a1b0          LDG.E.64.SYS R28, [R28+0x8]
+0x2aab89a7a1c0          IMAD.IADD R2, R16, 0x1, -R25
+0x2aab89a7a1d0          BSSY B8, 0x2aab89a7a550
+0x2aab89a7a1e0          LOP3.LUT R0, R2, 0x3, RZ, 0xc0, !PT
+0x2aab89a7a1f0          ISETP.NE.AND P0, PT, R0, RZ, PT
+0x2aab89a7a200     @!P0 BRA 0x2aab89a7a520
+0x2aab89a7a210          ISETP.NE.AND P0, PT, R0, 0x1, PT
+0x2aab89a7a220          BSSY B7, 0x2aab89a7a430
+0x2aab89a7a230     @!P0 BRA 0x2aab89a7a420
+0x2aab89a7a240          ISETP.NE.AND P0, PT, R0, 0x2, PT
+0x2aab89a7a250          BSSY B6, 0x2aab89a7a350
+0x2aab89a7a260     @!P0 BRA 0x2aab89a7a340
+0x2aab89a7a270          IMAD.WIDE.U32 R6, R25, 0x4, R28
+0x2aab89a7a280          LDG.E.SYS R6, [R6]
+0x2aab89a7a290          MOV R8, 0x4
+0x2aab89a7a2a0          IMAD.WIDE.U32 R10, R6, R8, c[0x0][0x168]
+0x2aab89a7a2b0          IMAD.WIDE.U32 R8, R6, R8, c[0x0][0x170]
+0x2aab89a7a2c0          LDG.E.SYS R5, [R10]
+0x2aab89a7a2d0          LDG.E.SYS R4, [R8]
+0x2aab89a7a2e0          MOV R20, 0x0
+0x2aab89a7a2f0          MOV R21, 0x0
+0x2aab89a7a300          I2F.U32 R5, R5
+0x2aab89a7a310          CALL.ABS.NOINC 0x0
+0x2aab89a7a320          FADD R26, R26, R4
+0x2aab89a7a330          IADD3 R25, R25, 0x1, RZ
+0x2aab89a7a340          BSYNC B6
+0x2aab89a7a350          IMAD.WIDE.U32 R10, R25, 0x4, R28
+0x2aab89a7a360          LDG.E.SYS R6, [R10]
+0x2aab89a7a370          IMAD.MOV.U32 R7, RZ, RZ, 0x4
+0x2aab89a7a380          IMAD.WIDE.U32 R8, R6, R7, c[0x0][0x168]
+0x2aab89a7a390          IMAD.WIDE.U32 R6, R6, R7, c[0x0][0x170]
+0x2aab89a7a3a0          LDG.E.SYS R5, [R8]
+0x2aab89a7a3b0          LDG.E.SYS R4, [R6]
+0x2aab89a7a3c0          MOV R20, 0x0
+0x2aab89a7a3d0          MOV R21, 0x0
+0x2aab89a7a3e0          I2F.U32 R5, R5
+0x2aab89a7a3f0          CALL.ABS.NOINC 0x0
+0x2aab89a7a400          FADD R26, R26, R4
+0x2aab89a7a410          IADD3 R25, R25, 0x1, RZ
+0x2aab89a7a420          BSYNC B7
+0x2aab89a7a430          IMAD.WIDE.U32 R10, R25, 0x4, R28
+0x2aab89a7a440          LDG.E.SYS R6, [R10]
+0x2aab89a7a450          IMAD.MOV.U32 R7, RZ, RZ, 0x4
+0x2aab89a7a460          IMAD.WIDE.U32 R8, R6, R7, c[0x0][0x168]
+0x2aab89a7a470          IMAD.WIDE.U32 R6, R6, R7, c[0x0][0x170]
+0x2aab89a7a480          LDG.E.SYS R5, [R8]
+0x2aab89a7a490          LDG.E.SYS R4, [R6]
+0x2aab89a7a4a0          MOV R20, 0x0
+0x2aab89a7a4b0          MOV R21, 0x0
+0x2aab89a7a4c0          I2F.U32 R5, R5
+0x2aab89a7a4d0          CALL.ABS.NOINC 0x0
+0x2aab89a7a4e0          FADD R23, R26, R4
+0x2aab89a7a4f0          IADD3 R25, R25, 0x1, RZ
+0x2aab89a7a500          MOV R26, R23
+0x2aab89a7a510          BRA 0x2aab89a7a540
+0x2aab89a7a520          IMAD.MOV.U32 R23, RZ, RZ, R26
+0x2aab89a7a530          IMAD.MOV.U32 R26, RZ, RZ, RZ
+0x2aab89a7a540          BSYNC B8
+0x2aab89a7a550          ISETP.GE.U32.AND P0, PT, R2, 0x4, PT
+0x2aab89a7a560     @!P0 BRA 0x2aab89a7a900
+0x2aab89a7a570          BSSY B6, 0x2aab89a7a900
+0x2aab89a7a580          IMAD.WIDE.U32 R2, R25, 0x4, R28
+0x2aab89a7a590          LDG.E.SYS R2, [R2]
+0x2aab89a7a5a0          MOV R7, 0x4
+0x2aab89a7a5b0          IMAD.WIDE.U32 R8, R2, R7, c[0x0][0x168]
+0x2aab89a7a5c0          IMAD.WIDE.U32 R6, R2, R7, c[0x0][0x170]
+0x2aab89a7a5d0          LDG.E.SYS R5, [R8]
+0x2aab89a7a5e0          LDG.E.SYS R4, [R6]
+0x2aab89a7a5f0          MOV R20, 0x0
+0x2aab89a7a600          MOV R21, 0x0
+0x2aab89a7a610          I2F.U32 R5, R5
+0x2aab89a7a620          CALL.ABS.NOINC 0x0
+0x2aab89a7a630          IADD3 R6, R25, 0x1, RZ
+0x2aab89a7a640          IMAD.WIDE.U32 R6, R6, 0x4, R28
+0x2aab89a7a650          LDG.E.SYS R6, [R6]
+0x2aab89a7a660          IMAD.MOV.U32 R8, RZ, RZ, 0x4
+0x2aab89a7a670          FADD R2, R23, R4
+0x2aab89a7a680          IMAD.WIDE.U32 R10, R6, R8, c[0x0][0x168]
+0x2aab89a7a690          IMAD.WIDE.U32 R8, R6, R8, c[0x0][0x170]
+0x2aab89a7a6a0          LDG.E.SYS R5, [R10]
+0x2aab89a7a6b0          LDG.E.SYS R4, [R8]
+0x2aab89a7a6c0          MOV R20, 0x0
+0x2aab89a7a6d0          MOV R21, 0x0
+0x2aab89a7a6e0          I2F.U32 R5, R5
+0x2aab89a7a6f0          CALL.ABS.NOINC 0x0
+0x2aab89a7a700          IADD3 R6, R25, 0x2, RZ
+0x2aab89a7a710          IMAD.WIDE.U32 R6, R6, 0x4, R28
+0x2aab89a7a720          LDG.E.SYS R6, [R6]
+0x2aab89a7a730          MOV R8, 0x4
+0x2aab89a7a740          FADD R2, R2, R4
+0x2aab89a7a750          IMAD.WIDE.U32 R10, R6, R8, c[0x0][0x168]
+0x2aab89a7a760          IMAD.WIDE.U32 R8, R6, R8, c[0x0][0x170]
+0x2aab89a7a770          LDG.E.SYS R5, [R10]
+0x2aab89a7a780          LDG.E.SYS R4, [R8]
+0x2aab89a7a790          MOV R20, 0x0
+0x2aab89a7a7a0          MOV R21, 0x0
+0x2aab89a7a7b0          I2F.U32 R5, R5
+0x2aab89a7a7c0          CALL.ABS.NOINC 0x0
+0x2aab89a7a7d0          IADD3 R6, R25, 0x3, RZ
+0x2aab89a7a7e0          IMAD.WIDE.U32 R6, R6, 0x4, R28
+0x2aab89a7a7f0          LDG.E.SYS R6, [R6]
+0x2aab89a7a800          IMAD.MOV.U32 R8, RZ, RZ, 0x4
+0x2aab89a7a810          FADD R2, R2, R4
+0x2aab89a7a820          IMAD.WIDE.U32 R10, R6, R8, c[0x0][0x168]
+0x2aab89a7a830          IMAD.WIDE.U32 R8, R6, R8, c[0x0][0x170]
+0x2aab89a7a840          LDG.E.SYS R5, [R10]
+0x2aab89a7a850          LDG.E.SYS R4, [R8]
+0x2aab89a7a860          MOV R20, 0x0
+0x2aab89a7a870          MOV R21, 0x0
+0x2aab89a7a880          I2F.U32 R5, R5
+0x2aab89a7a890          CALL.ABS.NOINC 0x0
+0x2aab89a7a8a0          IADD3 R25, R25, 0x4, RZ
+0x2aab89a7a8b0          FADD R26, R2, R4
+0x2aab89a7a8c0          ISETP.GE.U32.AND P0, PT, R25, R16, PT
+0x2aab89a7a8d0          MOV R23, R26
+0x2aab89a7a8e0     @!P0 BRA 0x2aab89a7a580
+0x2aab89a7a8f0          BSYNC B6
+0x2aab89a7a900          BSYNC B9
+0x2aab89a7a910          IADD3 R4, P0, R17, c[0x0][0x178], RZ
+0x2aab89a7a920          IMAD.MOV.U32 R0, RZ, RZ, c[0x0][0xc]
+0x2aab89a7a930          IADD3.X R5, R18, c[0x0][0x17c], RZ, P0, !PT
+0x2aab89a7a940          IMAD R0, R0, c[0x0][0x0], RZ
+0x2aab89a7a950          IADD3 R22, P0, R0, R22, RZ
+0x2aab89a7a960          STG.E.SYS [R4], R26
+0x2aab89a7a970          IADD3.X R19, RZ, R19, RZ, P0, !PT
+0x2aab89a7a980          ISETP.GE.U32.AND P0, PT, R22, R30, PT
+0x2aab89a7a990          ISETP.GE.U32.AND.EX P0, PT, R19, R31, PT, P0
+0x2aab89a7a9a0     @!P0 BRA 0x2aab89a7a0b0
+0x2aab89a7a9b0          EXIT
+0x2aab89a7a9c0          BRA 0x2aab89a7a9c0
+0x2aab89a7a9d0          NOP
+0x2aab89a7a9e0          NOP
+0x2aab89a7a9f0          NOP
